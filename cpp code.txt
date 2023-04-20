@@ -1,0 +1,556 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <cstring>
+
+using namespace std;
+
+//Declare arrays
+string Item[50][4];
+string Bill[50][6];
+int subtotal, count, id;
+int invoice_number = 1;
+//item id, name, quantity, price
+
+//Add item
+void additem() {
+    int x, y;
+    string answer;
+
+
+    for (x = 0; x < 5; x++) {
+        for (y = 0; y < 51; y++) {
+
+            //check the x boundary. Remove the x for loop and add static values
+
+            cout << "Add New Item";
+            cout << "\n";
+            cout << "Item ID :";
+            cin >> Item[y][x];
+            cout << "Item Name :";
+            cin >> Item[y][x + 1];
+            cout << "Quantity :";
+            cin >> Item[y][x + 3];
+            cout << "Price :";
+            cin >> Item[y][x + 2];
+
+            cout << "Do you want add any Items? (Y/N): ";
+            cin >> answer;
+
+            if (answer == "N" || answer == "n") {
+                //break;
+                y = 52;
+                x = 10;
+            }
+
+        }
+
+    }
+}
+
+//show Items
+void showitem() {
+    int x, y, n;
+
+    //check the number of data rows in 2d array
+    // get that value to int n
+    //remove the for loop and add while loop, while(x <=n)
+
+    cout << "Show added all Details";
+    cout << "\n";
+    cout << "| ID | Name | Price | Quantity |";
+    cout << "\n";
+    cout << "--------------------------------";
+    cout << "\n";
+
+    for (x = 0; x < 50; x++)
+    {
+
+        //check if the arry elemt is empty or not
+        if (Item[x][0].empty())
+        {
+            break;
+        }
+
+        cout << Item[x][0];
+        cout << " | ";
+        cout << Item[x][1];
+        cout << " | ";
+        cout << Item[x][2];
+        cout << " | ";
+        cout << Item[x][3];
+        cout << " | ";
+        cout << "\n";
+
+
+    }
+
+}
+
+//test method
+void showitem2() {
+    int x, y, n;
+
+    //check the number of data rows in 2d array
+    // get that value to int n
+    //remove the for loop and add while loop, while(x <=n)
+
+    cout << "Show added all Details";
+    cout << "\n";
+    cout << "| ID | Name | Price | Quantity | invoice | ";
+    cout << "\n";
+    cout << "--------------------------------";
+    cout << "\n";
+
+    for (x = 0; x < 50; x++)
+    {
+
+        //check if the arry elemt is empty or not
+        if (Bill[x][0].empty())
+        {
+            break;
+        }
+
+        cout << Bill[x][0];
+        cout << " | ";
+        cout << Bill[x][1];
+        cout << " | ";
+        cout << Bill[x][2];
+        cout << " | ";
+        cout << Bill[x][3];
+        cout << " | ";
+        cout << Bill[x][4];
+        cout << " | ";
+        cout << Bill[x][5];
+        cout << " | ";
+        cout << "\n";
+
+
+    }
+
+}
+
+
+
+
+//Search item
+void searchitem() {
+    //system "cls"
+    string key;
+    int x;
+    cout << "Please enter Item ID or Name";
+    cin >> key;
+
+    for (x = 0; x < 50; x++) {
+
+        //Item Id
+        if (key == Item[x][0]) {
+            cout << "| ID | Name | Price | Quantity |";
+            cout << "\n";
+            cout << "--------------------------------";
+            cout << "\n";
+            cout << Item[x][0];
+            cout << " | ";
+            cout << Item[x][1];
+            cout << " | ";
+            cout << Item[x][2];
+            cout << " | ";
+            cout << Item[x][3];
+            cout << " | ";
+            cout << "\n";
+        }
+        //Item name
+        else if (key == Item[x][1]) {
+            cout << "| ID | Name | Price | Quantity |";
+            cout << "\n";
+            cout << "--------------------------------";
+            cout << "\n";
+            cout << Item[x][0];
+            cout << " | ";
+            cout << Item[x][1];
+            cout << " | ";
+            cout << Item[x][2];
+            cout << " | ";
+            cout << Item[x][3];
+            cout << " | ";
+            cout << "\n";
+        }
+        //Do you want to search another item ?
+    }
+}
+
+//Remove item
+void removeitem() {
+
+}
+
+void updateitem() {
+    // Update Item details - topic
+    system ("cls");
+    string key;
+    int x;
+    cout << "Please enter Item ID or Name";
+    cin >> key;
+
+    for (x = 0; x < 50; x++) {
+        //Item Id
+        if (key == Item[x][0]) {
+            cout << "Item ID :";
+            cin >> Item[x][0];
+            cout << "Item Name :";
+            cin >> Item[x][1];
+            cout << "Quantity :";
+            cin >> Item[x][2];
+            cout << "Price :";
+            cin >> Item[x][3];
+        }
+        //else , for name
+    }
+
+}
+
+
+
+
+
+
+
+
+
+void createbill() {
+    //cls
+    string key, answer, answer2, c_name;
+    int x, n, qty, unitprice, total;
+    int count = 1;
+    string a, b, fileName;
+
+
+
+    cout << "Please enter Cashier Name :";
+    cin >> c_name;
+
+
+    n = 0;
+    while (n < 1)
+    {
+
+        
+
+
+    item_id:
+
+
+        
+
+        cout << "Please enter Item ID or Name :";
+        cin >> key;
+        for (x = 0; x < 50; x++)
+        {
+            //Item Id
+            if (key == Item[x][0])
+            {
+                cout << "| ID | Name | Price | Quantity |";
+                cout << "\n";
+                cout << "--------------------------------";
+                cout << "\n";
+                cout << Item[x][0];
+                cout << " | ";
+                cout << Item[x][1];
+                cout << " | ";
+                cout << Item[x][2];
+                cout << " | ";
+                cout << Item[x][3];
+                cout << " | ";
+                cout << "\n";
+                count = x;
+                break;
+            }
+
+            //else if search from name
+
+
+
+            else
+            {
+                count = x;
+            }
+            //name
+            //Item name
+
+
+        }
+
+        if (count == 49)
+        {
+            cout << "Item ID / Name is inorrect. Please try again. \n";
+            goto item_id;
+
+        }
+        else
+
+        {
+
+            x = count;
+            cout << count << "\n";
+            cout << "Please enter the quantity : ";
+            cin >> qty;
+            cout << "\n";
+
+            Bill[id][0] = Item[x][0]; // item id
+            Bill[id][1] = Item[x][1]; // item name
+            Bill[id][2] = to_string(qty); // customer quantity
+            Bill[id][3] = Item[x][3]; // unit price
+            total = stoi(Item[x][3]) * qty;;
+            Bill[id][4] = to_string(total); //total
+            Bill[id][5] = to_string(invoice_number);
+
+            id++;
+
+            //Deduct quantity from the inventory
+            int oldinventory = stoi(Item[x][3]);
+            int newinventory = oldinventory - qty;
+            Item[x][3] = to_string(newinventory);
+
+            subtotal = subtotal + total;
+
+
+            n++;
+            cout << "Do you want to purchase another item ? (Y / N) :";
+            cin >> answer;
+
+            if (answer == "Y" || answer == "y")
+            {
+                count++;
+                goto item_id;
+            }
+            else if (answer == "N" || answer == "n")
+            {
+
+
+
+
+
+
+                //up
+
+
+
+
+                // cout c_name
+
+                cout << "| ID | Name | Quantity | Unit price | Toal | \n";
+
+
+
+                for (x = 0; x < 50; x++)
+                {
+
+                    if (to_string(invoice_number) == Bill[x][5])
+                    {
+
+                        cout << Bill[x][0];
+                        cout << " | ";
+                        cout << Bill[x][1];
+                        cout << " | ";
+                        cout << Bill[x][2];
+                        cout << " | ";
+                        cout << Bill[x][3];
+                        cout << " | ";
+                        cout << Bill[x][4];
+                        cout << " | \n";
+                    }
+
+                }
+
+
+                cout << "Sub total is :" << subtotal;
+                invoice_number++;
+                n = 2;
+
+
+
+
+
+                //down
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+        }
+
+    }
+
+    cout << "Do you want to print this bill ? (Y / N) :";
+    cin >> answer2;
+
+    if (answer2 == "Y" || answer2 == "y")
+    {
+
+
+        cout << "ENTER FILE NAME (******.txt) ";
+        cin >> fileName;
+        ofstream txtOut;
+        //txtOut.open ("Example.txt");
+        txtOut.open(fileName);
+
+
+        //up
+        // must use txtOut,. do not use cout
+        //cname
+        //invo num
+
+        //texout
+
+
+
+        txtOut << "| ID | Name | Quantity | Unit price | Toal | \n";
+        
+
+        for (x = 0; x < 50; x++)
+        {
+
+            if (to_string(invoice_number-1) == Bill[x][5])
+            {
+
+                txtOut << Bill[x][0];
+                txtOut << " | ";
+                txtOut << Bill[x][1];
+                txtOut << " | ";
+                txtOut << Bill[x][2];
+                txtOut << " | ";
+                txtOut << Bill[x][3];
+                txtOut << " | ";
+                txtOut << Bill[x][4];
+                txtOut << " | \n";
+            }
+
+            
+
+        }
+        txtOut << "Sub total is :" << subtotal;
+
+
+
+
+
+        //down
+
+
+
+
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Login and main menus
+int main() {
+    string un, pw;
+    int count = 0;
+
+    while (count < 1) {
+        cout << "please enter the following details" << endl;
+        cout << "USERNAME :";
+        cin >> un;
+        cout << "PASSWORD :";
+        cin >> pw;
+
+        //admin login
+        if (un == "admin" && pw == "admin") {
+
+            int choice = 0;
+
+            while (choice < 9) {
+
+
+                system("cls");
+                
+                
+                cout << "\n\t\t-----Sudu Araliya - Super Mart-----\n";
+                cout << "\n\t\t-----No 101 Colombo - Hanwella Low Lavel Rd, Kaduwela--\n";
+                cout << "\n\t\t----- Tel 012 500000 / 0114 000000-----\n";
+
+                cout << "\n\t\t=====================================================\n";
+                cout << "\n\t\t1.Create Bill\n\n";
+                cout << "\t\t2.Add Item\n\n";
+
+                //this is not required as it would make things more complex. so remoe this option.
+                cout << "\t\t3.Remove Item\n\n";
+
+                cout << "\t\t4.Search Item\n\n";
+                cout << "\t\t5.Update Item\n\n";
+                cout << "\t\t6.Show Inventory\n\n";
+                cout << "\t\t7.Show Bill\n\n";
+                cout << "\t\t8.Logout\n\n";
+                cout << "\t\tPlease Enter Required Option: ";
+                cin >> choice;
+
+                if (choice == 1) {
+                    createbill();
+                }
+                else if (choice == 2) {
+                    additem();
+                    //done
+                }
+                else if (choice == 3) {
+                    removeitem();
+                }
+                else if (choice == 4) {
+                    searchitem();
+                    //done
+                }
+                else if (choice == 5) {
+                    updateitem();
+                    //done
+                }
+                else if (choice == 6) {
+                    showitem();
+                    //done
+                }
+                else if (choice == 7)
+                {
+                    //change name
+                    showitem2();
+                }
+                else if (choice == 8)
+                    choice = 10;
+
+            }
+
+        }
+        //finance login
+        else if (un == "finance" && pw == "finance") 
+        {
+            // search item, view bill, purchase item, logout
+            //showmitem2 with search with invoice number
+        }
+        else
+            cout << "UN and PW is incorrect";
+    }
+
+}
